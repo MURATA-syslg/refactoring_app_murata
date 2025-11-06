@@ -7,7 +7,7 @@ package jp.co.sss.crud.util;
  *
  */
 public class ConstantSQL {
-
+	//test
 	/** インスタンス化を禁止 */
 	private ConstantSQL() {
 	}
