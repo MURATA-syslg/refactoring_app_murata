@@ -56,7 +56,7 @@ public class MainSystem {
 
 			case 2:
 				// 社員名検索
-				System.out.print(ConstantMsg.INPUT_EMP_NAME);
+				System.out.print(ConstantMsg.MSG_INPUT_EMP_NAME);
 
 				// 検索機能の呼出
 				DBController.findEmployeeByName();
@@ -64,7 +64,7 @@ public class MainSystem {
 
 			case 3:
 				// 検索する部署IDを入力
-				System.out.print(ConstantMsg.INPUT_DEPT_ID);
+				System.out.print(ConstantMsg.MSG_INPUT_DEPT_ID);
 				deptId = br.readLine();
 
 				// 検索機能の呼出
@@ -73,13 +73,13 @@ public class MainSystem {
 
 			case 4:
 				// 登録する値を入力
-				System.out.print(ConstantMsg.INPUT_EMP_NAME);
+				System.out.print(ConstantMsg.MSG_INPUT_EMP_NAME);
 				String emp_name = br.readLine();
-				System.out.print(ConstantMsg.INPUT_GENDER);
+				System.out.print(ConstantMsg.MSG_INPUT_GENDER);
 				String gender = br.readLine();
-				System.out.print(ConstantMsg.INPUT_BIRTHDAY);
+				System.out.print(ConstantMsg.MSG_INPUT_BIRTHDAY);
 				String birthday = br.readLine();
-				System.out.print(ConstantMsg.INPUT_DEPT_ID);
+				System.out.print(ConstantMsg.MSG_INPUT_DEPT_ID);
 				deptId = br.readLine();
 
 				// 登録機能の呼出
@@ -88,20 +88,20 @@ public class MainSystem {
 
 			case 5:
 				// 更新する社員IDを入力
-				System.out.print(ConstantMsg.INPUT_UPDATE_EMP_ID);
+				System.out.print(ConstantMsg.MSG_INPUT_UPDATE_EMP_ID);
 
 				// 更新する値を入力する
 				String empId = br.readLine();
 
 				// 更新機能の呼出
 				DBController.updateEmployeeById(empId);
-				System.out.println(ConstantMsg.COMPLETE_UPDATE_EMP_INFO);
+				System.out.println(ConstantMsg.MSG_EMPLOYEE_UPDATE);
 
 				break;
 
 			case 6:
 				// 削除する社員IDを入力
-				System.out.print(ConstantMsg.INPUT_DELETE_EMP_ID);
+				System.out.print(ConstantMsg.MSG_INPUT_DELETE_EMP_ID);
 
 				// 削除機能の呼出
 				DBController.deleteEmployeeById();
@@ -109,6 +109,6 @@ public class MainSystem {
 
 			}
 		} while (menuNo != 7);
-		System.out.println(ConstantMsg.QUIT_SYSTEM);
+		System.out.println(ConstantMsg.MSG_QUIT_SYSTEM);
 	}
 }
