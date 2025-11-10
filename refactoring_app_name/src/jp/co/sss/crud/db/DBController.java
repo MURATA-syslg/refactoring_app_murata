@@ -30,7 +30,7 @@ public class DBController {
 	 * @throws ClassNotFoundException ドライバクラスが不在の場合に送出
 	 * @throws SQLException           DB処理でエラーが発生した場合に送出
 	 */
-	public static void find() throws ClassNotFoundException, SQLException {
+	public static void findAllEmployees() throws ClassNotFoundException, SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -57,16 +57,16 @@ public class DBController {
 				System.out.print(resultSet.getString("emp_id") + "\t");
 				System.out.print(resultSet.getString("emp_name") + "\t");
 
-				int gender = Integer.parseInt(resultSet.getString("gender"));
-				if (gender == 0) {
+				int resultGender = Integer.parseInt(resultSet.getString("gender"));
+				if (resultGender == 0) {
 					System.out.print("回答なし" + "\t");
-				} else if (gender == 1) {
+				} else if (resultGender == 1) {
 					System.out.print("男性" + "\t");
 
-				} else if (gender == 2) {
+				} else if (resultGender == 2) {
 					System.out.print("女性" + "\t");
 
-				} else if (gender == 9) {
+				} else if (resultGender == 9) {
 					System.out.print("その他" + "\t");
 
 				}
@@ -93,7 +93,7 @@ public class DBController {
 	 * @throws SQLException           DB処理でエラーが発生した場合に送出
 	 * @throws IOException            入力処理でエラーが発生した場合に送出
 	 */
-	public static void findB() throws ClassNotFoundException, SQLException, IOException {
+	public static void findEmployeeByName() throws ClassNotFoundException, SQLException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		// 検索ワード
@@ -132,17 +132,16 @@ public class DBController {
 				System.out.print(resultSet.getString("emp_name"));
 				System.out.print("\t");
 
-				String genderString = resultSet.getString("gender");
-				int gender = Integer.parseInt(genderString);
-				if (gender == 0) {
+				int resultGender = Integer.parseInt(resultSet.getString("gender"));
+				if (resultGender == 0) {
 					System.out.print("回答なし");
-				} else if (gender == 1) {
+				} else if (resultGender == 1) {
 					System.out.print("男性");
 
-				} else if (gender == 2) {
+				} else if (resultGender == 2) {
 					System.out.print("女性");
 
-				} else if (gender == 9) {
+				} else if (resultGender == 9) {
 					System.out.print("その他");
 
 				}
@@ -173,7 +172,7 @@ public class DBController {
 	 * @throws SQLException           DB処理でエラーが発生した場合に送出
 	 * @throws IOException            入力処理でエラーが発生した場合に送出
 	 */
-	public static void findC(String deptId) throws ClassNotFoundException, SQLException, IOException {
+	public static void findEmployeeByDeptId(String deptId) throws ClassNotFoundException, SQLException, IOException {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -209,17 +208,16 @@ public class DBController {
 				System.out.print(resultSet.getString("emp_name"));
 				System.out.print("\t");
 
-				String genderString = resultSet.getString("gender");
-				int gender = Integer.parseInt(genderString);
-				if (gender == 0) {
+				int resultGender = Integer.parseInt(resultSet.getString("gender"));
+				if (resultGender == 0) {
 					System.out.print("回答なし");
-				} else if (gender == 1) {
+				} else if (resultGender == 1) {
 					System.out.print("男性");
 
-				} else if (gender == 2) {
+				} else if (resultGender == 2) {
 					System.out.print("女性");
 
-				} else if (gender == 9) {
+				} else if (resultGender == 9) {
 					System.out.print("その他");
 
 				}
@@ -228,13 +226,12 @@ public class DBController {
 				System.out.print(resultSet.getString("birthday"));
 				System.out.print("\t");
 
-				String deptIdString = resultSet.getString("dept_id");
-				int deptId2 = Integer.parseInt(deptIdString);
-				if (deptId2 == 1) {
+				int resultdeptId = Integer.parseInt(resultSet.getString("dept_id"));
+				if (resultdeptId == 1) {
 					System.out.println("営業部");
-				} else if (deptId2 == 2) {
+				} else if (resultdeptId == 2) {
 					System.out.println("経理部");
-				} else if (gender == 3) {
+				} else if (resultGender == 3) {
 					System.out.println("総務部");
 
 				}
@@ -263,7 +260,7 @@ public class DBController {
 	 * @throws IOException             入力処理でエラーが発生した場合に送出
 	 * @throws ParseException 
 	 */
-	public static void insert(String empName, String gender, String birthday, String deptId)
+	public static void insertEmployee(String empName, String gender, String birthday, String deptId)
 			throws ClassNotFoundException, SQLException, IOException, ParseException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -301,7 +298,7 @@ public class DBController {
 	 * @throws IOException             入力処理でエラーが発生した場合に送出
 	 * @throws ParseException 
 	 */
-	public static void update(String empId)
+	public static void updateEmployeeById(String empId)
 			throws ClassNotFoundException, SQLException, IOException, ParseException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -353,7 +350,7 @@ public class DBController {
 	 * @throws SQLException           DB処理でエラーが発生した場合に送出
 	 * @throws IOException            入力処理でエラーが発生した場合に送出
 	 */
-	public static void delete() {
+	public static void deleteEmployeeById() {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
