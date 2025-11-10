@@ -10,7 +10,11 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
+import jp.co.sss.crud.dto.Department;
+import jp.co.sss.crud.dto.Employee;
 import jp.co.sss.crud.util.ConstantMsg;
 import jp.co.sss.crud.util.ConstantSQL;
 import jp.co.sss.crud.util.ConstantValue;
@@ -36,6 +40,7 @@ public class DBController {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
+		List<Employee> employees = new ArrayList<>();
 
 		try {
 			// DBに接続
@@ -56,25 +61,18 @@ public class DBController {
 			// レコードを出力
 			System.out.println(ConstantMsg.MSG_RECORD_OUTPUT_HEADER);
 			while (resultSet.next()) {
-				System.out.print(resultSet.getString(ConstantValue.COLUMN_EMP_ID) + "\t");
-				System.out.print(resultSet.getString(ConstantValue.COLUMN_EMP_NAME) + "\t");
 
-				int resultGender = Integer.parseInt(resultSet.getString(ConstantValue.COLUMN_GENDER));
-				if (resultGender == ConstantValue.GENDER_NO_ANSWER) {
-					System.out.print(ConstantMsg.MSG_NO_ANSWER + "\t");
-				} else if (resultGender == ConstantValue.GENDER_MALE) {
-					System.out.print(ConstantMsg.MSG_GENDER_MALE + "\t");
+				Employee employee = new Employee();
+				Department department = new Department();
 
-				} else if (resultGender == ConstantValue.GENDER_FEMALE) {
-					System.out.print(ConstantMsg.MSG_GENDER_FEMALE + "\t");
+				employee.setEmpId(resultSet.getInt("emp_id"));
+				employee.setEmpName(resultSet.getString(ConstantValue.COLUMN_EMP_NAME));
+				employee.setGender(Integer.parseInt(resultSet.getString(ConstantValue.COLUMN_GENDER)));
+				employee.setBirthday(resultSet.getString(ConstantValue.COLUMN_BIRTHDAY));
+				department.setDeptName(resultSet.getString(ConstantValue.COLUMN_DEPT_NAME));
+				employee.setDepartment(department);
 
-				} else if (resultGender == ConstantValue.GENDER_OTHER) {
-					System.out.print(ConstantMsg.MSG_GENDER_OTHER + "\t");
-
-				}
-
-				System.out.print(resultSet.getString(ConstantValue.COLUMN_BIRTHDAY) + "\t");
-				System.out.println(resultSet.getString(ConstantValue.COLUMN_DEPT_NAME));
+				System.out.println(employee);
 			}
 
 			System.out.println("");
@@ -128,31 +126,17 @@ public class DBController {
 
 			System.out.println(ConstantMsg.MSG_RECORD_OUTPUT_HEADER);
 			while (resultSet.next()) {
-				System.out.print(resultSet.getString(ConstantValue.COLUMN_EMP_ID));
-				System.out.print("\t");
+				Employee employee = new Employee();
+				Department department = new Department();
 
-				System.out.print(resultSet.getString(ConstantValue.COLUMN_EMP_NAME));
-				System.out.print("\t");
+				employee.setEmpId(resultSet.getInt("emp_id"));
+				employee.setEmpName(resultSet.getString(ConstantValue.COLUMN_EMP_NAME));
+				employee.setGender(Integer.parseInt(resultSet.getString(ConstantValue.COLUMN_GENDER)));
+				employee.setBirthday(resultSet.getString(ConstantValue.COLUMN_BIRTHDAY));
+				department.setDeptName(resultSet.getString(ConstantValue.COLUMN_DEPT_NAME));
+				employee.setDepartment(department);
 
-				int resultGender = Integer.parseInt(resultSet.getString(ConstantValue.COLUMN_GENDER));
-				if (resultGender == ConstantValue.GENDER_NO_ANSWER) {
-					System.out.print(ConstantMsg.MSG_NO_ANSWER);
-				} else if (resultGender == ConstantValue.GENDER_MALE) {
-					System.out.print(ConstantMsg.MSG_GENDER_MALE);
-
-				} else if (resultGender == ConstantValue.GENDER_FEMALE) {
-					System.out.print(ConstantMsg.MSG_GENDER_FEMALE);
-
-				} else if (resultGender == ConstantValue.GENDER_OTHER) {
-					System.out.print(ConstantMsg.MSG_GENDER_OTHER);
-
-				}
-
-				System.out.print("\t");
-				System.out.print(resultSet.getString(ConstantValue.COLUMN_BIRTHDAY));
-				System.out.print("\t");
-
-				System.out.println(resultSet.getString(ConstantValue.COLUMN_DEPT_NAME));
+				System.out.println(employee);
 			}
 
 			System.out.println("");
@@ -204,39 +188,17 @@ public class DBController {
 
 			System.out.println(ConstantMsg.MSG_RECORD_OUTPUT_HEADER);
 			while (resultSet.next()) {
-				System.out.print(resultSet.getString(ConstantValue.COLUMN_EMP_ID));
-				System.out.print("\t");
+				Employee employee = new Employee();
+				Department department = new Department();
 
-				System.out.print(resultSet.getString(ConstantValue.COLUMN_EMP_NAME));
-				System.out.print("\t");
+				employee.setEmpId(resultSet.getInt("emp_id"));
+				employee.setEmpName(resultSet.getString(ConstantValue.COLUMN_EMP_NAME));
+				employee.setGender(Integer.parseInt(resultSet.getString(ConstantValue.COLUMN_GENDER)));
+				employee.setBirthday(resultSet.getString(ConstantValue.COLUMN_BIRTHDAY));
+				department.setDeptName(resultSet.getString(ConstantValue.COLUMN_DEPT_NAME));
+				employee.setDepartment(department);
 
-				int resultGender = Integer.parseInt(resultSet.getString(ConstantValue.COLUMN_GENDER));
-				if (resultGender == ConstantValue.GENDER_NO_ANSWER) {
-					System.out.print(ConstantMsg.MSG_NO_ANSWER);
-				} else if (resultGender == ConstantValue.GENDER_MALE) {
-					System.out.print(ConstantMsg.MSG_GENDER_MALE);
-
-				} else if (resultGender == ConstantValue.GENDER_FEMALE) {
-					System.out.print(ConstantMsg.MSG_GENDER_FEMALE);
-
-				} else if (resultGender == ConstantValue.GENDER_OTHER) {
-					System.out.print(ConstantMsg.MSG_GENDER_OTHER);
-
-				}
-
-				System.out.print("\t");
-				System.out.print(resultSet.getString(ConstantValue.COLUMN_BIRTHDAY));
-				System.out.print("\t");
-
-				int resultdeptId = Integer.parseInt(resultSet.getString(ConstantValue.COLUMN_DEPT_ID));
-				if (resultdeptId == ConstantValue.DEPARTMENT_SALES_ID) {
-					System.out.println(ConstantMsg.MSG_DEPARTMENT_SALES);
-				} else if (resultdeptId == ConstantValue.DEPARTMENT_ACCOUNTING_ID) {
-					System.out.println(ConstantMsg.MSG_DEPARTMENT_ACCOUNTING);
-				} else if (resultGender == ConstantValue.DEPARTMENT_GENERAL_AFFAIRS_ID) {
-					System.out.println(ConstantMsg.MSG_DEPARTMENT_GENERAL_AFFAIRS);
-
-				}
+				System.out.println(employee);
 			}
 
 			System.out.println("");
