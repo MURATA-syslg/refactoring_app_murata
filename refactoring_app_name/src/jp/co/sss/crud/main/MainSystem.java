@@ -1,11 +1,10 @@
 package jp.co.sss.crud.main;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.text.ParseException;
 
+import jp.co.sss.crud.io.MenuNoReader;
 import jp.co.sss.crud.service.EmployeeAllFindService;
 import jp.co.sss.crud.service.EmployeeDeleteService;
 import jp.co.sss.crud.service.EmployeeFindByDeptIdService;
@@ -31,24 +30,13 @@ public class MainSystem {
 	 * @throws ParseException 
 	 */
 	public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException, ParseException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		int menuNo = 0;
 
 		do {
-			// メニューの表示
-			System.out.println(ConstantMsg.SYSTEM_MENU_BAR);
-			System.out.println(ConstantMsg.SYSTEM_MENU_VIEW_EMPLOYEES);
-			System.out.println(ConstantMsg.SYSTEM_MENU_SEARCH_BY_NAME);
-			System.out.println(ConstantMsg.SYSTEM_MENU_SEARCH_BY_DEPTID);
-			System.out.println(ConstantMsg.SYSTEM_MENU_INSERT);
-			System.out.println(ConstantMsg.SYSTEM_MENU_UPDATE);
-			System.out.println(ConstantMsg.SYSTEM_MENU_DELETE);
-			System.out.println(ConstantMsg.SYSTEM_MENU_QUIT);
-			System.out.print(ConstantMsg.SYSTEM_MENU_INPUT_MENUNO);
 
 			// メニュー番号の入力
-			menuNo = Integer.parseInt(br.readLine());
+			menuNo = MenuNoReader.inputMenuNo();
 
 			// 機能の呼出
 			switch (menuNo) {
