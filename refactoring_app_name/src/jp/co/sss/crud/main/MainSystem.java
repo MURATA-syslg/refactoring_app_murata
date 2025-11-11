@@ -12,6 +12,7 @@ import jp.co.sss.crud.service.EmployeeFindByEmpNameService;
 import jp.co.sss.crud.service.EmployeeRegisterService;
 import jp.co.sss.crud.service.EmployeeUpdateService;
 import jp.co.sss.crud.util.ConstantMsg;
+import jp.co.sss.crud.util.ConstantValue;
 
 /**
  * 社員情報管理システム開始クラス 社員情報管理システムはこのクラスから始まる。<br/>
@@ -40,43 +41,43 @@ public class MainSystem {
 
 			// 機能の呼出
 			switch (menuNo) {
-			case 1:
+			case ConstantValue.MENU_FIND_ALL_EMPLOYEES:
 				// 全件表示機能の呼出
 				EmployeeAllFindService.findAllEmployees();
 				break;
 
-			case 2:
+			case ConstantValue.MENU_FIND_EMPLOYEES_BY_NAME:
 
 				// 検索機能の呼出
 				EmployeeFindByEmpNameService.findEmployeeByName();
 				break;
 
-			case 3:
+			case ConstantValue.MENU_FIND_EMPLOYEES_BY_DEPT_ID:
 
 				// 検索機能の呼出
 				EmployeeFindByDeptIdService.findEmployeeByDeptId();
 				break;
 
-			case 4:
+			case ConstantValue.MENU_INSERT_EMPLOYEES:
 
 				// 登録機能の呼出
 				EmployeeRegisterService.insertEmployee();
 				break;
 
-			case 5:
+			case ConstantValue.MENU_UPDATE_EMPLOYEES:
 
 				// 更新機能の呼出
 				EmployeeUpdateService.updateEmployeeById();
 				break;
 
-			case 6:
+			case ConstantValue.MENU_DELETE_EMPLOYEES:
 
 				// 削除機能の呼出
 				EmployeeDeleteService.deleteEmployeeById();
 				break;
 
 			}
-		} while (menuNo != 7);
+		} while (menuNo != ConstantValue.MENU_QUIT);
 		System.out.println(ConstantMsg.MSG_QUIT_SYSTEM);
 	}
 }

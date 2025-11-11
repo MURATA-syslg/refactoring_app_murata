@@ -38,4 +38,18 @@ public class ConstantValue {
 
 	public static final int DEPARTMENT_GENERAL_AFFAIRS_ID = 3;
 
+	public static final int MENU_FIND_ALL_EMPLOYEES = 1;
+
+	public static final int MENU_FIND_EMPLOYEES_BY_NAME = 2;
+
+	public static final int MENU_FIND_EMPLOYEES_BY_DEPT_ID = 3;
+
+	public static final int MENU_INSERT_EMPLOYEES = 4;
+
+	public static final int MENU_UPDATE_EMPLOYEES = 5;
+
+	public static final int MENU_DELETE_EMPLOYEES = 6;
+
+	public static final int MENU_QUIT = 7;
+
 }
