@@ -6,7 +6,12 @@ import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import jp.co.sss.crud.db.DBController;
+import jp.co.sss.crud.service.EmployeeAllFindService;
+import jp.co.sss.crud.service.EmployeeDeleteService;
+import jp.co.sss.crud.service.EmployeeFindByDeptIdService;
+import jp.co.sss.crud.service.EmployeeFindByEmpNameService;
+import jp.co.sss.crud.service.EmployeeRegisterService;
+import jp.co.sss.crud.service.EmployeeUpdateService;
 import jp.co.sss.crud.util.ConstantMsg;
 
 /**
@@ -45,66 +50,41 @@ public class MainSystem {
 			// メニュー番号の入力
 			menuNo = Integer.parseInt(br.readLine());
 
-			String deptId;
-
 			// 機能の呼出
 			switch (menuNo) {
 			case 1:
 				// 全件表示機能の呼出
-				DBController.findAllEmployees();
+				EmployeeAllFindService.findAllEmployees();
 				break;
 
 			case 2:
-				// 社員名検索
-				System.out.print(ConstantMsg.MSG_INPUT_EMP_NAME);
 
 				// 検索機能の呼出
-				DBController.findEmployeeByName();
+				EmployeeFindByEmpNameService.findEmployeeByName();
 				break;
 
 			case 3:
-				// 検索する部署IDを入力
-				System.out.print(ConstantMsg.MSG_INPUT_DEPT_ID);
-				deptId = br.readLine();
 
 				// 検索機能の呼出
-				DBController.findEmployeeByDeptId(deptId);
+				EmployeeFindByDeptIdService.findEmployeeByDeptId();
 				break;
 
 			case 4:
-				// 登録する値を入力
-				System.out.print(ConstantMsg.MSG_INPUT_EMP_NAME);
-				String emp_name = br.readLine();
-				System.out.print(ConstantMsg.MSG_INPUT_GENDER);
-				String gender = br.readLine();
-				System.out.print(ConstantMsg.MSG_INPUT_BIRTHDAY);
-				String birthday = br.readLine();
-				System.out.print(ConstantMsg.MSG_INPUT_DEPT_ID);
-				deptId = br.readLine();
 
 				// 登録機能の呼出
-				DBController.insertEmployee(emp_name, gender, birthday, deptId);
+				EmployeeRegisterService.insertEmployee();
 				break;
 
 			case 5:
-				// 更新する社員IDを入力
-				System.out.print(ConstantMsg.MSG_INPUT_UPDATE_EMP_ID);
-
-				// 更新する値を入力する
-				String empId = br.readLine();
 
 				// 更新機能の呼出
-				DBController.updateEmployeeById(empId);
-				System.out.println(ConstantMsg.MSG_EMPLOYEE_UPDATE);
-
+				EmployeeUpdateService.updateEmployeeById();
 				break;
 
 			case 6:
-				// 削除する社員IDを入力
-				System.out.print(ConstantMsg.MSG_INPUT_DELETE_EMP_ID);
 
 				// 削除機能の呼出
-				DBController.deleteEmployeeById();
+				EmployeeDeleteService.deleteEmployeeById();
 				break;
 
 			}
