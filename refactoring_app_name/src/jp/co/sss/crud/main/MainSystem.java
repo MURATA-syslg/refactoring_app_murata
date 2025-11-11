@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 
+import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.io.MenuNoReader;
 import jp.co.sss.crud.service.EmployeeAllFindService;
 import jp.co.sss.crud.service.EmployeeDeleteService;
@@ -35,47 +36,52 @@ public class MainSystem {
 		int menuNo = 0;
 
 		do {
+			try {
+				// メニュー番号の入力
+				menuNo = MenuNoReader.inputMenuNo();
 
-			// メニュー番号の入力
-			menuNo = MenuNoReader.inputMenuNo();
+				// 機能の呼出
+				switch (menuNo) {
+				case ConstantValue.MENU_FIND_ALL_EMPLOYEES:
+					// 全件表示機能の呼出
+					EmployeeAllFindService.findAllEmployees();
+					break;
 
-			// 機能の呼出
-			switch (menuNo) {
-			case ConstantValue.MENU_FIND_ALL_EMPLOYEES:
-				// 全件表示機能の呼出
-				EmployeeAllFindService.findAllEmployees();
+				case ConstantValue.MENU_FIND_EMPLOYEES_BY_NAME:
+
+					// 検索機能の呼出
+					EmployeeFindByEmpNameService.findEmployeeByName();
+					break;
+
+				case ConstantValue.MENU_FIND_EMPLOYEES_BY_DEPT_ID:
+
+					// 検索機能の呼出
+					EmployeeFindByDeptIdService.findEmployeeByDeptId();
+					break;
+
+				case ConstantValue.MENU_INSERT_EMPLOYEES:
+
+					// 登録機能の呼出
+					EmployeeRegisterService.insertEmployee();
+					break;
+
+				case ConstantValue.MENU_UPDATE_EMPLOYEES:
+
+					// 更新機能の呼出
+					EmployeeUpdateService.updateEmployeeById();
+					break;
+
+				case ConstantValue.MENU_DELETE_EMPLOYEES:
+
+					// 削除機能の呼出
+					EmployeeDeleteService.deleteEmployeeById();
+					break;
+
+				}
+			} catch (SystemErrorException e) {
+				System.out.println(e.getMessage());
+				e.printStackTrace();
 				break;
-
-			case ConstantValue.MENU_FIND_EMPLOYEES_BY_NAME:
-
-				// 検索機能の呼出
-				EmployeeFindByEmpNameService.findEmployeeByName();
-				break;
-
-			case ConstantValue.MENU_FIND_EMPLOYEES_BY_DEPT_ID:
-
-				// 検索機能の呼出
-				EmployeeFindByDeptIdService.findEmployeeByDeptId();
-				break;
-
-			case ConstantValue.MENU_INSERT_EMPLOYEES:
-
-				// 登録機能の呼出
-				EmployeeRegisterService.insertEmployee();
-				break;
-
-			case ConstantValue.MENU_UPDATE_EMPLOYEES:
-
-				// 更新機能の呼出
-				EmployeeUpdateService.updateEmployeeById();
-				break;
-
-			case ConstantValue.MENU_DELETE_EMPLOYEES:
-
-				// 削除機能の呼出
-				EmployeeDeleteService.deleteEmployeeById();
-				break;
-
 			}
 		} while (menuNo != ConstantValue.MENU_QUIT);
 		System.out.println(ConstantMsg.MSG_QUIT_SYSTEM);

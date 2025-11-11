@@ -5,6 +5,7 @@ import java.util.List;
 
 import jp.co.sss.crud.db.EmployeeDAO;
 import jp.co.sss.crud.dto.Employee;
+import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.io.ConsoleWriter;
 
 /**
@@ -20,9 +21,12 @@ public class EmployeeAllFindService {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public static void findAllEmployees() throws ClassNotFoundException, SQLException {
-		List<Employee> serachedEmployees = EmployeeDAO.findAllEmployees();
+	public static void findAllEmployees() throws SystemErrorException {
+		List<Employee> serachedEmployees;
+
+		serachedEmployees = EmployeeDAO.findAllEmployees();
 		ConsoleWriter.showEmployees(serachedEmployees);
+
 		return;
 	}
 }

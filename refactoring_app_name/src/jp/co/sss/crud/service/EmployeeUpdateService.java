@@ -1,16 +1,14 @@
 package jp.co.sss.crud.service;
 
-import java.io.IOException;
-import java.sql.SQLException;
-import java.text.ParseException;
-
 import jp.co.sss.crud.db.EmployeeDAO;
+import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.io.EmployeeBirthdayReader;
 import jp.co.sss.crud.io.EmployeeDeptIdReader;
 import jp.co.sss.crud.io.EmployeeEmpIdReader;
 import jp.co.sss.crud.io.EmployeeGenderReader;
 import jp.co.sss.crud.io.EmployeeNameReader;
 import jp.co.sss.crud.util.ConstantMsg;
+import jp.co.sss.crud.util.ConstantValue;
 
 /**
  * 社員情報更新処理用のサービスクラス
@@ -19,9 +17,10 @@ import jp.co.sss.crud.util.ConstantMsg;
  */
 public class EmployeeUpdateService {
 
-	public static void updateEmployeeById() throws IOException, ClassNotFoundException, SQLException, ParseException {
+	public static void updateEmployeeById() throws SystemErrorException {
 		// 更新する値を入力する
-		String empId = EmployeeEmpIdReader.inputEmployeeId(1);
+		String empId = EmployeeEmpIdReader.inputEmployeeId(ConstantValue.MENU_FIND_ALL_EMPLOYEES);
+
 		String empName = EmployeeNameReader.inputEmployeeName();
 		String gender = EmployeeGenderReader.inputEmployeeGender();
 		String birthday = EmployeeBirthdayReader.inputEmployeeBirthday();

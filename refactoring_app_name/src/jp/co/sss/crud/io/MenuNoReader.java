@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.util.ConstantMsg;
 
 /**
@@ -13,7 +14,7 @@ import jp.co.sss.crud.util.ConstantMsg;
  */
 public class MenuNoReader {
 
-	public static int inputMenuNo() throws NumberFormatException, IOException {
+	public static int inputMenuNo() throws SystemErrorException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		// メニューの表示
@@ -27,6 +28,10 @@ public class MenuNoReader {
 		System.out.println(ConstantMsg.SYSTEM_MENU_QUIT);
 		System.out.print(ConstantMsg.SYSTEM_MENU_INPUT_MENUNO);
 
-		return Integer.parseInt(br.readLine());
+		try {
+			return Integer.parseInt(br.readLine());
+		} catch (NumberFormatException | IOException e) {
+			throw new SystemErrorException(ConstantMsg.MSG_SYSTEM_ERROR, e);
+		}
 	}
 }

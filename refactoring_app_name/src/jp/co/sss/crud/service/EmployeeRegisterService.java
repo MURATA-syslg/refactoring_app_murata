@@ -1,10 +1,7 @@
 package jp.co.sss.crud.service;
 
-import java.io.IOException;
-import java.sql.SQLException;
-import java.text.ParseException;
-
 import jp.co.sss.crud.db.EmployeeDAO;
+import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.io.EmployeeBirthdayReader;
 import jp.co.sss.crud.io.EmployeeDeptIdReader;
 import jp.co.sss.crud.io.EmployeeGenderReader;
@@ -17,7 +14,7 @@ import jp.co.sss.crud.io.EmployeeNameReader;
  */
 public class EmployeeRegisterService {
 
-	public static void insertEmployee() throws IOException, ClassNotFoundException, SQLException, ParseException {
+	public static void insertEmployee() throws SystemErrorException {
 
 		// 登録する値を入力
 		String empName = EmployeeNameReader.inputEmployeeName();

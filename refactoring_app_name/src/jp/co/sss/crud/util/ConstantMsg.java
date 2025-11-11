@@ -68,4 +68,5 @@ public class ConstantMsg {
 
 	public static final String MSG_EMPLOYEE_DELETED = "社員情報を削除しました";
 
+	public static final String MSG_SYSTEM_ERROR = "システムエラーです。";
 }
